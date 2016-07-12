@@ -6,6 +6,8 @@ import ua.in.dris4ecoder.SimpleCalculator.BinaryOperation;
 import ua.in.dris4ecoder.SimpleCalculator.Calculator;
 import ua.in.dris4ecoder.SimpleCalculator.UnaryOperation;
 
+import java.util.Scanner;
+
 /**
  * Created by Alex Korneyko on 05.07.2016 19:36.
  */
@@ -28,41 +30,24 @@ public class Main {
 
     private void execute() {
 
-        System.out.println(calculator.compute("2+3"));
-        System.out.println(calculator.compute("10-73"));
-        System.out.println(calculator.compute("20-3"));
-        System.out.println(calculator.compute("200+30000000"));
-
         calculator.addNewBinaryOperation(new MultipleOperation());
-        System.out.println(calculator.compute("10*15"));
+        calculator.addNewUnaryOperation(new FactorialOperation());
+        double result;
 
-        //Add unary operation
-        calculator.addNewUnaryOperation(new UnaryOperation() {
-            @Override
-            public double calculate(double v) {
-                return v * v;
+        for(;;) {
+
+            String line = new Scanner(System.in).nextLine();
+
+            if(line.equals("exit")) {
+                break;
             }
 
-            @Override
-            public char getOperator() {
-                return 's';
+            try {
+                result = calculator.compute(line);
+                System.out.println(line + " = " + result);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-        });
-
-        System.out.println(calculator.compute("s20"));
-
-    }
-
-    private class MultipleOperation implements BinaryOperation{
-
-        @Override
-        public double calculate(double v, double v1) {
-            return v * v1;
-        }
-
-        @Override
-        public char getOperator() {
-            return '*';
         }
     }
 }

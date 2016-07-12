@@ -20,6 +20,7 @@ public class AppConfig {
 
     @Bean
     Calculator calculator(){
-        return CalculatorFactory.getCalculator();
+        Calculator calculator = CalculatorFactory.getCalculator();
+        return calculator;
     }
 }
