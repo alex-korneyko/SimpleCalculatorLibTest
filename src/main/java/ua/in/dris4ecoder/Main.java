@@ -2,9 +2,7 @@ package ua.in.dris4ecoder;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.in.dris4ecoder.SimpleCalculator.BinaryOperation;
 import ua.in.dris4ecoder.SimpleCalculator.Calculator;
-import ua.in.dris4ecoder.SimpleCalculator.UnaryOperation;
 
 import java.util.Scanner;
 
@@ -31,7 +29,11 @@ public class Main {
     private void execute() {
 
         calculator.addNewBinaryOperation(new MultipleOperation());
+        calculator.addNewBinaryOperation(new DivideOperation());
         calculator.addNewUnaryOperation(new FactorialOperation());
+
+        calculator.addNewValueParser(new HexDataType());
+
         double result;
 
         for(;;) {
