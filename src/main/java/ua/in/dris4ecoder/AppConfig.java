@@ -12,15 +12,14 @@ import ua.in.dris4ecoder.SimpleCalculator.CalculatorFactory;
 public class AppConfig {
 
     @Bean
-    Main main(Calculator calculator){
+    Main main(Calculator newCalculator){
         Main main = new Main();
-        main.setCalculator(calculator);
+        main.setCalculator(newCalculator);
         return main;
     }
 
     @Bean
-    Calculator calculator(){
-        Calculator calculator = CalculatorFactory.getCalculator();
-        return calculator;
+    Calculator newCalculator(){
+        return CalculatorFactory.getCalculator();
     }
 }

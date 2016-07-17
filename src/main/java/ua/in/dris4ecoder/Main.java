@@ -3,6 +3,7 @@ package ua.in.dris4ecoder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.in.dris4ecoder.SimpleCalculator.Calculator;
+import ua.in.dris4ecoder.SimpleCalculator.CalculatorFactory;
 
 import java.util.Scanner;
 
@@ -19,11 +20,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-contextt.xml");
         Main mainClass = applicationContext.getBean("main", Main.class);
 
         mainClass.execute();
-
     }
 
     private void execute() {
@@ -36,11 +36,13 @@ public class Main {
 
         double result;
 
-        for(;;) {
+        for (; ; ) {
+
+            System.out.print("Enter expression (type 'X' for exit) -> ");
 
             String line = new Scanner(System.in).nextLine();
 
-            if(line.equals("exit")) {
+            if (line.equals("X")) {
                 break;
             }
 
